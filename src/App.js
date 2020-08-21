@@ -42,12 +42,12 @@ export default function App() {
           style={styles.repositoryContainer}
           data={repos}
           keyExtractor={(reposit) => reposit.id}
-          renderItem={({ item: reposit }) => (
+          renderItem={({ item }) => (
             <View style={styles.repositoryContainer}>
-              <Text style={styles.repository}>{reposit.title}</Text>
+              <Text style={styles.repository}>{item.title}</Text>
 
               <View style={styles.techsContainer}>
-                {reposit.techs.map((tech) => (
+                {item.techs.map((tech) => (
                   <Text key={tech} style={styles.tech}>
                     {tech}
                   </Text>
@@ -57,18 +57,16 @@ export default function App() {
               <View style={styles.likesContainer}>
                 <Text
                   style={styles.likeText}
-                  testID={`repository-likes-${reposit.id}`}
+                  testID={`repository-likes-${item.id}`}
                 >
-                  if {reposit.likes} > 1 {`${reposit.likes} curtidas`}{" "}
-                  {reposit.likes}
-                  curtida
+                  {item.likes} curtidas
                 </Text>
               </View>
 
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => handleLikeRepository(reposit.id)}
-                testID={`like-button-${reposit.id}`}
+                onPress={() => handleLikeRepository(item.id)}
+                testID={`like-button-${item.id}`}
               >
                 <Text style={styles.buttonText}>Curtir</Text>
               </TouchableOpacity>
